@@ -12,7 +12,7 @@
     <h2>Популярные товары</h2>
 
     @if($popularProducts->isNotEmpty())
-      <div class="products-grid">
+      <div class="products">
         @foreach($popularProducts as $product)
           <article class="product-card">
             @if($product->sales_count > 10)
@@ -61,9 +61,9 @@
     @else
       <p class="empty-message">Пока нет популярных товаров.</p>
     @endif
+
+    <a style="display: inline-block; margin-top: 24px;" href="{{ route('catalog') }}" class="product-card__link">Смотреть
+      все товары</a>
   </section>
 
-  <section class="catalog-link">
-    <a href="{{ route('catalog') }}" class="btn btn--primary">Смотреть все товары</a>
-  </section>
 @endsection

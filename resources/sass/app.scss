@@ -5,6 +5,9 @@
 @import '_main.scss';
 @import '_pagination.scss';
 @import '_swiper.scss';
+@import '_filter.scss';
+@import '_catalog.scss';
+@import '_product-card.scss';
 
 html {
   box-sizing: border-box;
@@ -45,7 +48,7 @@ img {
 }
 
 .container {
-  max-width: 1440px;
+  max-width: 1600px;
   padding: 0 15px;
   margin: 0 auto;
 }
