@@ -1,9 +1,9 @@
 <header class="header">
-  <a class="header__logo" href="#">
-    <img src="#" alt="Logo">
+  <a class="header__logo" href="/">
+    <img src="{{ asset('images/Logo.png')  }}" alt="Logo">
   </a>
   <ul class="header__list">
-    <li class="header__item"><a class="header__link" href="#">Каталог</a></li>
+    <li class="header__item"><a class="header__link" href="{{ route('catalog')  }}">Каталог</a></li>
     <li class="header__item"><a class="header__link" href="#">Услуги</a></li>
     <li class="header__item"><a class="header__link" href="#">Акции</a></li>
     <li class="header__item"><a class="header__link" href="#">О нас</a></li>
