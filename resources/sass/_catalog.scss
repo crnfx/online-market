@@ -1,0 +1,16 @@
+.catalog {
+  padding: 40px 0;
+
+  h1 {
+    margin-bottom: 30px;
+    font-size: 32px;
+    font-weight: 700;
+  }
+
+  &__wrapper {
+    display: flex;
+    gap: 30px;
+  }
+}
+
+
