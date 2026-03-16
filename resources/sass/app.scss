@@ -2,6 +2,9 @@
 @import '_header.scss';
 @import '_footer.scss';
 @import '_hero.scss';
+@import '_main.scss';
+@import '_pagination.scss';
+@import '_swiper.scss';
 
 html {
   box-sizing: border-box;
@@ -25,7 +28,7 @@ img {
 .body {
   min-width: 320px;
   font-family: 'Inter', 'Roboto', sans-serif;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
