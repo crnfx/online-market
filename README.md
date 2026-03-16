@@ -15,18 +15,18 @@
 ```
 
 ```bash
-./vendor/bin/sail artisan migrate
+./vendor/bin/sail artisan migrate:fresh --seed
 ```
 
 ## Database structure
 
-| Папка | Назначение |
-|-------|------------|
-| `app/Models/` | Eloquent модели |
+| Папка                   | Назначение             |
+|-------------------------|------------------------|
+| `app/Models/`           | Eloquent модели        |
 | `app/Http/Controllers/` | Контроллеры приложения |
-| `app/Http/Middleware/` | Промежуточное ПО |
-| `database/migrations/` | Миграции БД |
-| `database/seeders/` | Наполнители данных |
-| `resources/views/` | Шаблоны Blade |
-| `resources/js/` | JavaScript файлы |
-| `resources/css/` | Стили |
+| `app/Http/Middleware/`  | Промежуточное ПО       |
+| `database/migrations/`  | Миграции БД            |
+| `database/seeders/`     | Наполнители данных     |
+| `resources/views/`      | Шаблоны Blade          |
+| `resources/js/`         | JavaScript файлы       |
+| `resources/css/`        | Стили                  |
