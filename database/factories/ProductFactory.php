@@ -29,6 +29,8 @@ class ProductFactory extends Factory
             'sale_price' => null,
             'quantity' => fake()->numberBetween(0, 100),
             'is_active' => fake()->boolean(80),
+            'sales_count' => fake()->numberBetween(0, 5),
+            'views_count' => fake()->numberBetween(10, 100),
         ];
     }
 
@@ -59,6 +61,17 @@ class ProductFactory extends Factory
     {
         return $this->state(fn(array $attributes): array => [
             'sale_price' => ($attributes['price'] ?? fake()->randomFloat(2, 100, 10000)) * 0.8,
+        ]);
+    }
+
+    /**
+     * Популярный товар (много продаж)
+     */
+    public function popular(): static
+    {
+        return $this->state(fn(array $attributes): array => [
+            'sales_count' => fake()->numberBetween(15, 50),
+            'views_count' => fake()->numberBetween(500, 2000),
         ]);
     }
 }

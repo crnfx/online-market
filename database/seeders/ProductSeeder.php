@@ -13,18 +13,20 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        // Создать 20 товаров
         Product::factory()
-            ->count(20)
+            ->count(15)
             ->create();
 
-        // Создать 5 товаров со скидкой
+        Product::factory()
+            ->count(5)
+            ->popular()
+            ->create();
+
         Product::factory()
             ->count(5)
             ->onSale()
             ->create();
 
-        // Создать 3 неактивных товара
         Product::factory()
             ->count(3)
             ->inactive()

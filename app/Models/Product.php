@@ -24,12 +24,16 @@ class Product extends Model
         'sale_price',
         'quantity',
         'is_active',
+        'sales_count',
+        'views_count',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
         'price' => 'decimal:2',
         'sale_price' => 'decimal:2',
+        'sales_count' => 'integer',
+        'views_count' => 'integer',
     ];
 
     public function category(): BelongsTo
@@ -50,5 +54,15 @@ class Product extends Model
     public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function incrementViews(): void
+    {
+        $this->increment('views_count');
+    }
+    
+    public function incrementSales(int $quantity = 1): void
+    {
+        $this->increment('sales_count', $quantity);
     }
 }
