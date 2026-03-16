@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#111111">
   <title>@yield('title')</title>
-  @vite(['resources/sass/_normalize.scss', 'resources/sass/app.scss', 'resources/js/app.js'])
+  @vite(['resources/sass/app.scss', 'resources/js/app.js'])
   @stack('link')
 </head>
 
