@@ -40,7 +40,7 @@ class ProductFilterRequest extends FormRequest
     public function withValidator($validator): void
     {
         $validator->sometimes('price_max', 'gte:price_min', function ($input) {
-            return !empty($input->price_min) && !empty($input->price_max);
+            return ! empty($input->price_min) && ! empty($input->price_max);
         });
     }
 
@@ -65,8 +65,6 @@ class ProductFilterRequest extends FormRequest
 
     /**
      * Get validated filters with defaults
-     *
-     * @return array
      */
     public function getFilters(): array
     {
@@ -82,4 +80,3 @@ class ProductFilterRequest extends FormRequest
         ];
     }
 }
-

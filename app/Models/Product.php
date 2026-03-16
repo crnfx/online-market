@@ -60,7 +60,7 @@ class Product extends Model
     {
         $this->increment('views_count');
     }
-    
+
     public function incrementSales(int $quantity = 1): void
     {
         $this->increment('sales_count', $quantity);

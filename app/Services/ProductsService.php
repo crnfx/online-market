@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProductsService
@@ -15,19 +16,19 @@ class ProductsService
     {
         $query = Product::query()->where('is_active', true);
 
-        if (!empty($filters['category_id'])) {
+        if (! empty($filters['category_id'])) {
             $query->where('category_id', $filters['category_id']);
         }
 
-        if (!empty($filters['price_min'])) {
+        if (! empty($filters['price_min'])) {
             $query->where('price', '>=', $filters['price_min']);
         }
-        if (!empty($filters['price_max'])) {
+        if (! empty($filters['price_max'])) {
             $query->where('price', '<=', $filters['price_max']);
         }
 
-        if (!empty($filters['search'])) {
-            $query->where('name', 'like', '%' . $filters['search'] . '%');
+        if (! empty($filters['search'])) {
+            $query->where('name', 'like', '%'.$filters['search'].'%');
         }
 
         $sortField = $filters['sort'] ?? 'created_at';
@@ -50,7 +51,7 @@ class ProductsService
         return $query->paginate(self::PER_PAGE ?? $perPage);
     }
 
-    public function getPopularProducts(int $limit): \Illuminate\Database\Eloquent\Collection
+    public function getPopularProducts(int $limit): Collection
     {
         return Product::query()
             ->where('is_active', true)
@@ -68,5 +69,3 @@ class ProductsService
         return $product;
     }
 }
-
-

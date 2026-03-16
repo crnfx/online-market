@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
-            $table->enum('status' , [
+            $table->enum('status', [
                 'pending',
                 'paid',
                 'processing',
@@ -22,7 +22,7 @@ return new class extends Migration
                 'delivered',
                 'completed',
                 'cancelled',
-                'refunded'
+                'refunded',
             ])->default('pending');
             $table->decimal('total', 10, 2)->default(0);
             $table->text('manager_comment')->nullable();
