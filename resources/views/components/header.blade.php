@@ -5,8 +5,6 @@
   <ul class="header__list">
     <li class="header__item"><a class="header__link" href="{{ route('catalog')  }}">Каталог</a></li>
     <li class="header__item"><a class="header__link" href="{{ route('service') }}">Услуги</a></li>
-    <li class="header__item"><a class="header__link" href="#">Акции</a></li>
-    <li class="header__item"><a class="header__link" href="#">О нас</a></li>
     <li class="header__item"><a class="header__link" href="#">Контакты</a></li>
   </ul>
   <form class="header__search-form" method="GET" action="{{ route('catalog') }}" role="search">
