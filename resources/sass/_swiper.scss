@@ -33,6 +33,7 @@
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
     text-align: center;
+    z-index: 1000;
   }
 
   &__link:hover {
