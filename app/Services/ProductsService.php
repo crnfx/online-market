@@ -9,15 +9,48 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProductsService
 {
-    public function getProducts(int $perPage = 10): LengthAwarePaginator
+    const PER_PAGE = 15;
+
+    public function getProducts(array $filters = [], int $perPage = self::PER_PAGE): LengthAwarePaginator
     {
-        return Product::query()
-            ->where('is_active', true)
-            ->orderByDesc('created_at')
-            ->paginate($perPage);
+        $query = Product::query()->where('is_active', true);
+
+        if (!empty($filters['category_id'])) {
+            $query->where('category_id', $filters['category_id']);
+        }
+
+        if (!empty($filters['price_min'])) {
+            $query->where('price', '>=', $filters['price_min']);
+        }
+        if (!empty($filters['price_max'])) {
+            $query->where('price', '<=', $filters['price_max']);
+        }
+
+        if (!empty($filters['search'])) {
+            $query->where('name', 'like', '%' . $filters['search'] . '%');
+        }
+
+        $sortField = $filters['sort'] ?? 'created_at';
+        $sortOrder = $filters['order'] ?? 'desc';
+
+        switch ($sortField) {
+            case 'price':
+                $query->orderBy('price', $sortOrder);
+                break;
+            case 'popularity':
+                $query->orderByDesc('sales_count')->orderByDesc('views_count');
+                break;
+            case 'name':
+                $query->orderBy('name', $sortOrder);
+                break;
+            default:
+                $query->orderBy('created_at', $sortOrder);
+        }
+
+        return $query->paginate(self::PER_PAGE ?? $perPage);
     }
 
-    public function getPopularProducts(int $limit = 8): \Illuminate\Database\Eloquent\Collection
+    public function getPopularProducts(int $limit): \Illuminate\Database\Eloquent\Collection
     {
         return Product::query()
             ->where('is_active', true)

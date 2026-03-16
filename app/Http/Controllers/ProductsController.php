@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductFilterRequest;
 use App\Services\ProductsService;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -16,11 +17,11 @@ class ProductsController extends Controller
     )
     {
     }
-
+    
     public function index()
     {
         try {
-            $popularProducts = $this->productsService->getPopularProducts(8);
+            $popularProducts = $this->productsService->getPopularProducts(3);
         } catch (Exception $e) {
             Log::error('Popular products error: ' . $e->getMessage());
             $popularProducts = [];
@@ -28,11 +29,12 @@ class ProductsController extends Controller
 
         return view('main', compact('popularProducts'));
     }
-    
-    public function getProducts(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
+
+    public function getProducts(ProductFilterRequest $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
     {
         try {
-            $products = $this->productsService->getProducts();
+            $filters = $request->getFilters();
+            $products = $this->productsService->getProducts($filters);
         } catch (Exception $e) {
             Log::error('Products errors: ' . $e->getMessage());
             $products = [];
@@ -41,20 +43,15 @@ class ProductsController extends Controller
         return view('catalog', compact('products'));
     }
 
-    public function getProductById(int $id): JsonResponse
+    public function getProductById(int $id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
     {
         try {
-            $response = $this->responseOk(
-                $this->productsService->getProductById($id)
-            );
+            $product = $this->productsService->getProductById($id);
         } catch (Exception $e) {
-            $response = $this->responseFail(
-                'Product errors: ' . $e->getMessage(),
-            );
-
             Log::error('Product errors: ' . $e->getMessage());
+            $product = [];
         }
 
-        return $response;
+        return view('product', compact('product'));
     }
 }
