@@ -3,12 +3,15 @@
 ])
 
 @if($product)
-  <article class="product__card product-card">
+  <article class="product product__card product-card">
     @if($product->sales_count > 10)
       <span class="product-card__badge">Хит продаж</span>
     @endif
 
     <h3 class="product-card__title">{{ $product->name }}</h3>
+
+    @component('components.product-image', [])
+    @endcomponent
 
     <p class="product-card__description">
       {{ $product->description }}
