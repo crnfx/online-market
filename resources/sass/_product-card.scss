@@ -55,6 +55,13 @@
 
   &__badge {
     color: $color-badge;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__badge svg {
+    color: $color-badge;
   }
 
   &__description {
