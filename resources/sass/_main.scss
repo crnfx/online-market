@@ -23,10 +23,10 @@
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 24px;
-    background: #fff;
-    border-radius: 12px;
+    background: $color-bg-white;
+    border-radius: $radius-lg;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: $shadow-table;
 
     &:last-child {
       margin-bottom: 0;
@@ -36,10 +36,10 @@
   &__head {
     cursor: pointer;
     user-select: none;
-    transition: background 0.2s;
+    transition: background $transition-fast;
 
     &:hover {
-      background: #f8f9ff;
+      background: $color-bg-accent;
     }
 
     // Стиль фокуса для доступности
@@ -49,13 +49,13 @@
     }
 
     tr {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: $gradient-primary;
     }
 
     th {
       padding: 16px 20px;
       text-align: left;
-      color: #fff;
+      color: $color-bg-white;
       font-weight: 600;
       font-size: 16px;
 
@@ -89,15 +89,15 @@
 
   &__body {
     tr {
-      border-bottom: 1px solid #f0f0f0;
-      transition: background 0.2s;
+      border-bottom: 1px solid $color-border-lighter;
+      transition: background $transition-fast;
 
       &:last-child {
         border-bottom: none;
       }
 
       &:hover {
-        background: #fafafa;
+        background: $color-bg-lighter;
       }
     }
 
@@ -111,14 +111,14 @@
     th {
       width: 60px;
       text-align: center;
-      color: #999;
+      color: $color-text-placeholder;
       font-weight: 500;
     }
 
     td:last-child {
       text-align: right;
       font-weight: 600;
-      color: #333;
+      color: $color-text-secondary;
       white-space: nowrap;
     }
   }

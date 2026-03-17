@@ -7,8 +7,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  background: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: $color-bg-white;
+  box-shadow: $shadow-header;
 
   &__list {
     display: flex;
@@ -27,19 +27,19 @@
   &__search-input {
     width: 300px;
     padding: 10px 45px 10px 16px;
-    border: 2px solid #e8e8e8;
-    border-radius: 25px;
+    border: 2px solid $color-border;
+    border-radius: $radius-round;
     font-size: 14px;
     outline: none;
-    transition: all 0.3s ease;
+    transition: all $transition-base;
 
     &::placeholder {
-      color: #999;
+      color: $color-text-placeholder;
     }
 
     &:focus {
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+      border-color: $color-primary;
+      box-shadow: $shadow-focus-ring;
     }
   }
 
@@ -51,14 +51,14 @@
     width: 36px;
     height: 36px;
     border: none;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: $gradient-primary;
     border-radius: 50%;
-    color: #fff;
+    color: $color-bg-white;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform $transition-fast, box-shadow $transition-fast;
 
     svg {
       width: 16px;
@@ -67,7 +67,7 @@
 
     &:hover {
       transform: translateY(-50%) scale(1.05);
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      box-shadow: $shadow-button;
     }
 
     &:active {

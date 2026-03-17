@@ -18,10 +18,10 @@
 
   &__item {
     &--active .custom-pagination__link {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #fff;
+      background: $gradient-primary;
+      color: $color-bg-white;
       border-color: transparent;
-      box-shadow: 0 4px 14px rgba(102, 126, 234, 0.4);
+      box-shadow: $shadow-button-active;
       font-weight: 700;
     }
 
@@ -29,7 +29,7 @@
       opacity: 0.35;
       cursor: not-allowed;
       pointer-events: none;
-      background: #f5f5f5;
+      background: $color-bg-disabled;
     }
 
     &--dots .custom-pagination__link {
@@ -37,7 +37,7 @@
       background: transparent;
       min-width: auto;
       padding: 0 6px;
-      color: #999;
+      color: $color-text-placeholder;
       font-weight: 500;
     }
   }
@@ -49,32 +49,32 @@
     min-width: 42px;
     height: 42px;
     padding: 0 14px;
-    border-radius: 12px;
-    border: 2px solid #e8e8e8;
-    background: #fff;
-    color: #333;
+    border-radius: $radius-lg;
+    border: 2px solid $color-border;
+    background: $color-bg-white;
+    color: $color-text-secondary;
     font-size: 15px;
     font-weight: 600;
     line-height: 1;
-    transition: all 0.25s ease;
+    transition: all $transition-slow;
     cursor: pointer;
 
     &:hover:not(.custom-pagination__item--active &) {
-      background: #f8f9ff;
-      border-color: #667eea;
-      color: #667eea;
+      background: $color-bg-accent;
+      border-color: $color-primary;
+      color: $color-primary;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+      box-shadow: $shadow-focus;
     }
 
     &--arrow {
       font-size: 18px;
       border-width: 2px;
-      background: #fafafa;
+      background: $color-bg-lighter;
 
       &:hover {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: #fff;
+        background: $gradient-primary;
+        color: $color-bg-white;
         border-color: transparent;
       }
     }
@@ -86,19 +86,19 @@
     margin: 0 3px;
 
     &.active .page-link {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #fff;
+      background: $gradient-primary;
+      color: $color-bg-white;
       border-color: transparent;
-      box-shadow: 0 4px 14px rgba(102, 126, 234, 0.4);
+      box-shadow: $shadow-button-active;
       font-weight: 700;
-      border-radius: 12px;
+      border-radius: $radius-lg;
     }
 
     &.disabled .page-link {
       opacity: 0.35;
       cursor: not-allowed;
-      background: #f5f5f5;
-      border-radius: 12px;
+      background: $color-bg-disabled;
+      border-radius: $radius-lg;
     }
   }
 
@@ -109,21 +109,21 @@
     min-width: 42px;
     height: 42px;
     padding: 0 14px;
-    border-radius: 12px;
-    border: 2px solid #e8e8e8;
-    background: #fff;
-    color: #333;
+    border-radius: $radius-lg;
+    border: 2px solid $color-border;
+    background: $color-bg-white;
+    color: $color-text-secondary;
     font-size: 15px;
     font-weight: 600;
     line-height: 1;
-    transition: all 0.25s ease;
+    transition: all $transition-slow;
 
     &:hover {
-      background: #f8f9ff;
-      border-color: #667eea;
-      color: #667eea;
+      background: $color-bg-accent;
+      border-color: $color-primary;
+      color: $color-primary;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+      box-shadow: $shadow-focus;
     }
   }
 }

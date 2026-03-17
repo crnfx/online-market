@@ -1,3 +1,4 @@
+@import '_variables.scss';
 @import '_fonts.scss';
 @import '_header.scss';
 @import '_footer.scss';
@@ -8,6 +9,8 @@
 @import '_filter.scss';
 @import '_catalog.scss';
 @import '_product-card.scss';
+@import '_cart.scss';
+@import '_product-image.scss';
 
 html {
   box-sizing: border-box;
@@ -31,7 +34,7 @@ img {
 .body {
   min-width: 320px;
   font-family: 'Inter', 'Roboto', sans-serif;
-  background-color: #ffffff;
+  background-color: $color-bg-white;
   display: flex;
   flex-direction: column;
   min-height: 100vh;

@@ -1,7 +1,7 @@
 .swiper {
   width: 100%;
   height: 600px;
-  border-radius: 16px;
+  border-radius: $radius-xl;
   overflow: hidden;
 
   &__slide {
@@ -24,21 +24,21 @@
     left: 50px;
     min-height: 44px;
     padding: 10px 20px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: $radius-md;
+    background: $gradient-primary;
     width: 300px;
-    color: #fff;
+    color: $color-bg-white;
     font-size: 18px;
     font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    transition: all $transition-base;
+    box-shadow: $shadow-button;
     text-align: center;
     z-index: 1000;
   }
 
   &__link:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: $shadow-button-hover;
   }
 
   @media (max-width: 768px) {

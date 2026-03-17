@@ -1,10 +1,14 @@
-
 .filter-form {
   max-width: 300px;
-  background: #f8f9fa;
+  background: $color-bg-light;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: $radius-lg;
   margin-bottom: 30px;
+  max-height: max-content;
+  position: sticky;
+  top: 130px;
+  align-self: start;
+  height: fit-content;
 
   &__row {
     display: flex;
@@ -26,25 +30,25 @@
       margin-bottom: 5px;
       font-size: 14px;
       font-weight: 500;
-      color: #333;
+      color: $color-text-secondary;
     }
 
     input,
     select {
       width: 100%;
       padding: 10px 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
+      border: 1px solid $color-border-light;
+      border-radius: $radius-sm;
       font-size: 14px;
-      transition: border-color 0.3s ease;
+      transition: border-color $transition-base;
 
       &:focus {
         outline: none;
-        border-color: #667eea;
+        border-color: $color-primary;
       }
 
       &::placeholder {
-        color: #999;
+        color: $color-text-placeholder;
       }
     }
   }
@@ -56,32 +60,32 @@
 
     .btn {
       padding: 10px 20px;
-      border-radius: 8px;
+      border-radius: $radius-sm;
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all $transition-base;
       text-decoration: none;
 
       &--primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: #fff;
+        background: $gradient-primary;
+        color: $color-bg-white;
         border: none;
 
         &:hover {
           transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+          box-shadow: $shadow-button;
         }
       }
 
       &--secondary {
-        background: #fff;
-        color: #667eea;
-        border: 1px solid #667eea;
+        background: $color-bg-white;
+        color: $color-primary;
+        border: 1px solid $color-primary;
 
         &:hover {
-          background: #667eea;
-          color: #fff;
+          background: $color-primary;
+          color: $color-bg-white;
         }
       }
     }

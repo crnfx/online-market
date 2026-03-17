@@ -1,0 +1,53 @@
+$color-primary: #0EA5E9;
+$color-primary-light: #38BDF8;
+$color-primary-dark: #0284C7;
+$color-accent: #06B6D4;
+
+$color-text-primary: #0F172A;
+$color-text-secondary: #334155;
+$color-text-muted: #64748B;
+$color-text-placeholder: #94A3B8;
+
+$color-bg-white: #FFFFFF;
+$color-bg-light: #F0F9FF;
+$color-bg-lighter: #F8FAFC;
+$color-bg-accent: #E0F2FE;
+$color-bg-disabled: #F1F5F9;
+$color-bg-ice: #E0F2FE;
+
+$color-border: #E2E8F0;
+$color-border-light: #CBD5E1;
+$color-border-lighter: #F1F5F9;
+$color-border-darker: #94A3B8;
+
+$color-sale: #F97316;
+$color-badge: #0EA5E9;
+$color-success: #10B981;
+$color-warning: #F59E0B;
+
+$gradient-primary: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
+$gradient-primary-horizontal: linear-gradient(90deg, $color-primary-light 0%, $color-primary-dark 100%);
+$gradient-cool: linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%);
+$gradient-ice: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 100%);
+$gradient-sale-bg: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+
+$shadow-card: 0 2px 8px rgba(14, 165, 233, 0.06);
+$shadow-header: 0 2px 10px rgba(14, 165, 233, 0.08);
+$shadow-hover: 0 12px 32px rgba(14, 165, 233, 0.12);
+$shadow-table: 0 2px 8px rgba(14, 165, 233, 0.06);
+
+$shadow-button: 0 4px 12px rgba(14, 165, 233, 0.25);
+$shadow-button-hover: 0 6px 20px rgba(14, 165, 233, 0.35);
+$shadow-button-active: 0 4px 14px rgba(14, 165, 233, 0.35);
+$shadow-focus: 0 4px 12px rgba(14, 165, 233, 0.15);
+$shadow-focus-ring: 0 0 0 3px rgba(14, 165, 233, 0.2);
+
+$radius-sm: 8px;
+$radius-md: 10px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+$radius-round: 25px;
+
+$transition-fast: 0.2s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.25s ease;
