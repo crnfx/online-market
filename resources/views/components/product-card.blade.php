@@ -1,5 +1,6 @@
 @props([
-  'product' => null
+  'product' => null,
+  'isSingle' => false
 ])
 
 @if($product)
@@ -46,7 +47,7 @@
       @endif
     </p>
 
-    @if(request()->routeIs('catalog'))
+    @if(!$isSingle)
       <a class="product-card__link" href="{{ route('product', $product->id) }}">Подробнее</a>
     @endif
   </article>

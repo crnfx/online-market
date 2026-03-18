@@ -5,7 +5,8 @@
 @section('content')
   @if($product)
     @component('components.product-card', [
-      'product' => $product
+      'product' => $product,
+      'isSingle' => true
     ])
     @endcomponent
   @else
