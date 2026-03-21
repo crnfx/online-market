@@ -9,7 +9,6 @@
   gap: 20px;
   background: $color-bg-white;
   box-shadow: $shadow-header;
-  margin-bottom: 24px;
 
   &__list {
     display: flex;
@@ -27,7 +26,7 @@
       }
     }
   }
-  
+
   &__list--menu {
     position: absolute;
     top: 106px;

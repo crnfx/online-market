@@ -12,6 +12,7 @@
 @import '_cart.scss';
 @import '_product-image.scss';
 @import '_contact-form.scss';
+@import '_product.scss';
 
 html {
   box-sizing: border-box;
@@ -30,6 +31,10 @@ a {
 
 img {
   max-width: 100%;
+}
+
+section {
+  padding: 20px 0;
 }
 
 .body {
