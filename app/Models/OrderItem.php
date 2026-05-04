@@ -12,7 +12,10 @@ class OrderItem extends Model
     protected $fillable = [
         'order_id',
         'product_id',
+        'specification_id',
         'product_name',
+        'sku',
+        'variant_name',
         'price',
         'quantity',
         'total',
@@ -31,5 +34,10 @@ class OrderItem extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function specification(): BelongsTo
+    {
+        return $this->belongsTo(Specification::class);
     }
 }

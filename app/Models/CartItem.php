@@ -12,6 +12,7 @@ class CartItem extends Model
     protected $fillable = [
         'cart_id',
         'product_id',
+        'specification_id',
         'quantity',
         'price',
     ];
@@ -28,6 +29,21 @@ class CartItem extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function specification(): BelongsTo
+    {
+        return $this->belongsTo(Specification::class);
+    }
+
+    public function getSkuAttribute(): ?string
+    {
+        return $this->specification?->sku;
+    }
+
+    public function getVariantNameAttribute(): ?string
+    {
+        return $this->specification?->name;
     }
 
     public function getTotalAttribute(): float

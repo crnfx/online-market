@@ -30,7 +30,11 @@ class Cart extends Model
 
     public function recalculateTotal(): void
     {
-        $this->total = $this->items->sum('total');
+        $this->loadMissing('items');
+
+        $this->total = $this->items->sum(function ($item) {
+            return $item->price * $item->quantity;
+        });
         $this->save();
     }
 }
