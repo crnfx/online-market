@@ -49,13 +49,15 @@ class Product extends Model
     public function getMinPriceAttribute(): ?float
     {
         $minPrice = $this->activeSpecifications()->min('price');
-        return $minPrice !== null ? (float)$minPrice : null;
+
+        return $minPrice !== null ? (float) $minPrice : null;
     }
 
     public function getMaxPriceAttribute(): ?float
     {
         $maxPrice = $this->activeSpecifications()->max('price');
-        return $maxPrice !== null ? (float)$maxPrice : null;
+
+        return $maxPrice !== null ? (float) $maxPrice : null;
     }
 
     public function isInStock(): bool
