@@ -23,9 +23,7 @@ class IndexCartRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_id' => 'required|integer|exists:products,id',
-            'specification_id' => 'required|integer|exists:specifications,id',
-            'quantity' => 'required|integer|min:1',
+            //
         ];
     }
 
@@ -37,15 +35,7 @@ class IndexCartRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'product_id.required' => 'Не указан товар',
-            'product_id.integer' => 'Некорректный идентификатор товара',
-            'product_id.exists' => 'Товар не найден',
-            'specification_id.required' => 'Не указана спецификация товара',
-            'specification_id.integer' => 'Некорректный идентификатор спецификации',
-            'specification_id.exists' => 'Спецификация не найдена',
-            'quantity.required' => 'Не указано количество',
-            'quantity.integer' => 'Количество должно быть целым числом',
-            'quantity.min' => 'Минимальное количество товара — 1',
+            //
         ];
     }
 }
