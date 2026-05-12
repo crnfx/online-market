@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Specification>
+ * @extends Factory<Specification>
  */
 class SpecificationFactory extends Factory
 {
@@ -23,7 +23,7 @@ class SpecificationFactory extends Factory
     {
         return [
             'product_id' => Product::factory(),
-            'sku' => strtoupper('SKU-' . Str::random(8)),
+            'sku' => strtoupper('SKU-'.Str::random(8)),
             'name' => fake()->word(),
             'attributes' => null,
             'price' => fake()->randomFloat(2, 100, 10000),
