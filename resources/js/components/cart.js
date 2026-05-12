@@ -12,8 +12,8 @@ function loadCart() {
   })
     .then(response => response.json())
     .then(data => {
-      if (data.success && data.cart.items.length > 0) {
-        renderCart(data.cart);
+      if (data.status && data.data.items.length > 0) {
+        renderCart(data.data);
       } else {
         renderEmptyCart();
       }
@@ -45,43 +45,60 @@ function renderCart(cart) {
 
   cart.items.forEach(item => {
     html += `
-          <tr class="cart-item" data-item-id="${item.id}">
-            <td class="cart-item__name">${item.product_name}</td>
-            <td class="cart-item__variant">${item.variant_name || '—'}</td>
-            <td class="cart-item__sku">${item.sku || '—'}</td>
-            <td class="cart-item__price">${formatPrice(item.price)} ₽</td>
-            <td class="cart-item__quantity">
-              <div class="quantity-control">
-                <button class="quantity-control__btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})" ${item.quantity <= 1 ? 'disabled' : ''}>−</button>
-                <span class="quantity-control__value">${item.quantity}</span>
-                <button class="quantity-control__btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
-              </div>
-            </td>
-            <td class="cart-item__total">${formatPrice(item.total)} ₽</td>
-            <td class="cart-item__remove">
-              <button class="btn-remove" onclick="removeItem(${item.id})">✕</button>
-            </td>
-          </tr>
-        `;
+ <tr class="cart-item" data-item-id="${item.id}">
+ <td class="cart-item__name">${item.product_name}</td>
+ <td class="cart-item__variant">${item.variant_name || '—'}</td>
+ <td class="cart-item__sku">${item.sku || '—'}</td>
+ <td class="cart-item__price">${formatPrice(item.price)}₽</td>
+ <td class="cart-item__quantity">
+ <div class="quantity-control">
+ <button class="quantity-control__btn" data-action="decrease" data-item-id="${item.id}" data-quantity="${item.quantity - 1}" ${item.quantity <= 1 ? 'disabled' : ''}>−</button>
+ <span class="quantity-control__value">${item.quantity}</span>
+ <button class="quantity-control__btn" data-action="increase" data-item-id="${item.id}" data-quantity="${item.quantity + 1}">+</button>
+ </div>
+ </td>
+ <td class="cart-item__total">${formatPrice(item.total)}₽</td>
+ <td class="cart-item__remove">
+ <button class="btn-remove" data-action="remove" data-item-id="${item.id}">✕</button>
+ </td>
+ </tr>
+ `;
   });
 
   html += `
-            </tbody>
-          </table>
-        </div>
-        <div class="cart-summary">
-          <div class="cart-summary__row">
-            <span>Товаров: ${cart.items_count}</span>
-          </div>
-          <div class="cart-summary__row cart-summary__row--total">
-            <span>Итого:</span>
-            <span class="cart-summary__total">${formatPrice(cart.total)} ₽</span>
-          </div>
-          <button class="cart-summary__checkout btn btn--primary">Оформить заказ</button>
-        </div>
-      `;
+ </tbody>
+ </table>
+ </div>
+ <div class="cart-summary">
+ <div class="cart-summary__row">
+ <span>Товаров: ${cart.items_count}</span>
+ </div>
+ <div class="cart-summary__row cart-summary__row--total">
+ <span>Итого:</span>
+ <span class="cart-summary__total">${formatPrice(cart.total)}₽</span>
+ </div>
+ <button class="cart-summary__checkout btn btn--primary">Оформить заказ</button>
+ </div>
+ `;
 
   container.innerHTML = html;
+
+  container.addEventListener('click', handleCartClick);
+}
+
+function handleCartClick(e) {
+  const btn = e.target.closest('[data-action]');
+  if (!btn) return;
+
+  const action = btn.dataset.action;
+  const itemId = parseInt(btn.dataset.itemId, 10);
+
+  if (action === 'decrease' || action === 'increase') {
+    const newQuantity = parseInt(btn.dataset.quantity, 10);
+    updateQuantity(itemId, newQuantity);
+  } else if (action === 'remove') {
+    removeItem(itemId);
+  }
 }
 
 function renderEmptyCart() {
@@ -106,7 +123,7 @@ function updateQuantity(itemId, newQuantity) {
   })
     .then(response => response.json())
     .then(data => {
-      if (data.success) {
+      if (data.status) {
         loadCart();
       } else {
         alert(data.message || 'Ошибка обновления количества');
@@ -129,7 +146,7 @@ function removeItem(itemId) {
   })
     .then(response => response.json())
     .then(data => {
-      if (data.success) {
+      if (data.status) {
         loadCart();
       } else {
         alert(data.message || 'Ошибка удаления товара');
