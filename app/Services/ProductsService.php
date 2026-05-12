@@ -23,25 +23,25 @@ class ProductsService
                 $q->where('is_active', true);
             });
 
-        if (!empty($filters['category_id'])) {
+        if (! empty($filters['category_id'])) {
             $query->where('category_id', $filters['category_id']);
         }
 
-        if (!empty($filters['price_min'])) {
+        if (! empty($filters['price_min'])) {
             $query->whereHas('specifications', function ($q) use ($filters) {
                 $q->where('price', '>=', $filters['price_min'])
                     ->where('is_active', true);
             });
         }
-        if (!empty($filters['price_max'])) {
+        if (! empty($filters['price_max'])) {
             $query->whereHas('specifications', function ($q) use ($filters) {
                 $q->where('price', '<=', $filters['price_max'])
                     ->where('is_active', true);
             });
         }
 
-        if (!empty($filters['search'])) {
-            $query->where('name', 'like', '%' . $filters['search'] . '%');
+        if (! empty($filters['search'])) {
+            $query->where('name', 'like', '%'.$filters['search'].'%');
         }
 
         $sortField = $filters['sort'] ?? 'created_at';

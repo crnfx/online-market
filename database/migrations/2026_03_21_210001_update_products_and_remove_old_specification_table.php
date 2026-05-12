@@ -5,7 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -17,7 +18,7 @@ return new class extends Migration {
             foreach ($oldSpecs as $oldSpec) {
                 DB::table('specifications')->insert([
                     'product_id' => $oldSpec->product_id,
-                    'sku' => 'SKU-' . $oldSpec->product_id . '-' . $oldSpec->id,
+                    'sku' => 'SKU-'.$oldSpec->product_id.'-'.$oldSpec->id,
                     'price' => $oldSpec->price,
                     'sale_price' => $oldSpec->sale_price,
                     'quantity' => $oldSpec->quantity,
@@ -45,7 +46,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        if (!Schema::hasColumn('products', 'price')) {
+        if (! Schema::hasColumn('products', 'price')) {
             Schema::table('products', function (Blueprint $table) {
                 $table->decimal('price', 10, 2)->default(0)->after('description');
                 $table->decimal('sale_price', 10, 2)->nullable()->after('price');
@@ -53,7 +54,7 @@ return new class extends Migration {
             });
         }
 
-        if (!Schema::hasTable('products_specification')) {
+        if (! Schema::hasTable('products_specification')) {
             Schema::create('products_specification', function (Blueprint $table) {
                 $table->id();
                 $table->foreignId('product_id')->constrained()->onDelete('cascade');

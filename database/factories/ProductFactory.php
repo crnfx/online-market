@@ -38,7 +38,7 @@ class ProductFactory extends Factory
      */
     public function active(): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'is_active' => true,
         ]);
     }
@@ -48,7 +48,7 @@ class ProductFactory extends Factory
      */
     public function inactive(): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'is_active' => false,
         ]);
     }
@@ -92,7 +92,7 @@ class ProductFactory extends Factory
      */
     public function popular(): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'sales_count' => fake()->numberBetween(15, 50),
             'views_count' => fake()->numberBetween(500, 2000),
         ]);
