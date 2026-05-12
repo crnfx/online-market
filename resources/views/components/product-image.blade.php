@@ -1,20 +1,26 @@
+@props([
+    'product' => null,
+])
+
 <div class="product__image">
-  <ul class="image-switch">
-    <li class="image-switch__item">
-      <div class="image-switch__img">
-        <img src="{{ asset('images/employer.webp') }}" alt="">
-      </div>
-    </li>
-    <li class="image-switch__item">
-      <div class="image-switch__img">
-        <img src="{{ asset('images/family.webp') }}" alt="">
-      </div>
-    </li>
-    <li class="image-switch__item">
-      <div class="image-switch__img">
-        <img src="{{ asset('images/girl.webp') }}" alt="">
-      </div>
-    </li>
-  </ul>
-  <ul class="product__image-pagination image-pagination" aria-hidden="true"></ul>
+  @if($product && $product->images->count() > 0)
+    <ul class="image-switch">
+      @foreach($product->images as $image)
+        <li class="image-switch__item">
+          <div class="image-switch__img">
+            <img src="{{ Storage::url($image->path) }}" alt="{{ $image->alt ?? $product->name }}">
+          </div>
+        </li>
+      @endforeach
+    </ul>
+    <ul class="product__image-pagination image-pagination" aria-hidden="true"></ul>
+  @else
+    <ul class="image-switch">
+      <li class="image-switch__item">
+        <div class="image-switch__img">
+          <img src="{{ asset('images/placeholder.webp') }}" alt="Нет изображения">
+        </div>
+      </li>
+    </ul>
+  @endif
 </div>
