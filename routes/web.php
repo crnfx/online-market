@@ -20,4 +20,3 @@ Route::delete('/cart/item/{itemId}', [CartController::class, 'remove'])->name('c
 Route::get('/admin', function () {
     return view('admin.index');
 });
-

@@ -11,8 +11,10 @@ use App\Http\Requests\UpdateCartItemRequest;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Specification;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -129,33 +131,42 @@ class CartController extends Controller
         }
     }
 
-    public function index(IndexCartRequest $request): JsonResponse
+    public function index(IndexCartRequest $request): JsonResponse|Response|View
     {
         try {
             $cart = $this->getOrCreateCart($request);
-            $cart->load(['items.product', 'items.specification']);
 
-            return $this->responseOk([
-                'id' => $cart->id,
-                'items' => $cart->items->map(fn ($item) => [
-                    'id' => $item->id,
-                    'product_id' => $item->product_id,
-                    'product_name' => $item->product->name,
-                    'specification_id' => $item->specification_id,
-                    'sku' => $item->specification?->sku,
-                    'variant_name' => $item->specification?->name,
-                    'quantity' => $item->quantity,
-                    'price' => $item->price,
-                    'total' => $item->total,
-                ]),
-                'items_count' => $cart->items->sum('quantity'),
-                'total' => $cart->total,
-            ]);
+            if ($request->wantsJson()) {
+                $cart->load(['items.product', 'items.specification']);
+
+                return $this->responseOk([
+                    'id' => $cart->id,
+                    'items' => $cart->items->map(fn ($item) => [
+                        'id' => $item->id,
+                        'product_id' => $item->product_id,
+                        'product_name' => $item->product->name,
+                        'specification_id' => $item->specification_id,
+                        'sku' => $item->specification?->sku,
+                        'variant_name' => $item->specification?->name,
+                        'quantity' => $item->quantity,
+                        'price' => $item->price,
+                        'total' => $item->total,
+                    ]),
+                    'items_count' => $cart->items->sum('quantity'),
+                    'total' => $cart->total,
+                ]);
+            }
+
+            return view('pages.cart');
 
         } catch (\Exception $e) {
             Log::error('Cart get error: '.$e->getMessage());
 
-            return $this->responseFail('Ошибка получения корзины', 500);
+            if ($request->wantsJson()) {
+                return $this->responseFail('Ошибка получения корзины', 500);
+            }
+
+            return view('pages.cart')->with('error', 'Ошибка загрузки корзины');
         }
     }
 

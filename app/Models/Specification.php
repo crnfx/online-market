@@ -57,7 +57,7 @@ class Specification extends Model
     {
         return $this->quantity > 0;
     }
-    
+
     public function getAttributeData(?string $key = null): mixed
     {
         $attributes = $this->attributes ?? [];

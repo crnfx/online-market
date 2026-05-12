@@ -240,7 +240,7 @@ class ProductSeeder extends Seeder
             }
 
             foreach ($images as $index => $imageFile) {
-                $path = "products/{$categoryName}/" . $this->getBrandFolder($productData['name']) . "/{$imageFile}";
+                $path = "products/{$categoryName}/".$this->getBrandFolder($productData['name'])."/{$imageFile}";
 
                 ProductImage::create([
                     'product_id' => $product->id,
