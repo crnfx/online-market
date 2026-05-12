@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
@@ -10,3 +11,13 @@ Route::get('/product/{id}', [ProductsController::class, 'getProductById'])->name
 Route::view('/service', 'pages.service')->name('service');
 
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
+
+Route::get('/cart', [CartController::class, 'get'])->name('cart');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::patch('/cart/item/{itemId}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/item/{itemId}', [CartController::class, 'remove'])->name('cart.remove');
+
+Route::get('/admin', function () {
+    return view('admin.index');
+});
+
