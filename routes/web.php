@@ -12,8 +12,8 @@ Route::view('/service', 'pages.service')->name('service');
 
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
-Route::get('/cart', [CartController::class, 'get'])->name('cart');
-Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/cart/add', [CartController::class, 'store'])->name('cart.add');
 Route::patch('/cart/item/{itemId}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/item/{itemId}', [CartController::class, 'remove'])->name('cart.remove');
 
