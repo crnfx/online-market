@@ -13,7 +13,7 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         Category::factory()->createMany([
-            ['name' => 'ventilation', 'description' => 'Вентиляция'],
+            ['name' => 'ventilation', 'description' => 'Вентиляции'],
             ['name' => 'conditioner', 'description' => 'Кондиционеры'],
         ]);
     }
