@@ -3,7 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Product;
+use App\Models\Specification;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 /**
@@ -25,9 +27,6 @@ class ProductFactory extends Factory
             'name' => $name,
             'slug' => Str::slug($name),
             'description' => fake()->paragraph(),
-            'price' => fake()->randomFloat(2, 100, 10000),
-            'sale_price' => null,
-            'quantity' => fake()->numberBetween(0, 100),
             'is_active' => fake()->boolean(80),
             'sales_count' => fake()->numberBetween(0, 5),
             'views_count' => fake()->numberBetween(10, 100),
@@ -39,7 +38,7 @@ class ProductFactory extends Factory
      */
     public function active(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $attributes): array => [
             'is_active' => true,
         ]);
     }
@@ -49,27 +48,51 @@ class ProductFactory extends Factory
      */
     public function inactive(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $attributes): array => [
             'is_active' => false,
         ]);
     }
 
     /**
-     * Товар со скидкой
+     * Товар с одной спецификацией
      */
-    public function onSale(): static
+    public function withSpecification(array $specAttributes = []): static
     {
-        return $this->state(fn (array $attributes): array => [
-            'sale_price' => ($attributes['price'] ?? fake()->randomFloat(2, 100, 10000)) * 0.8,
-        ]);
+        return $this->afterCreating(function (Product $product) use ($specAttributes) {
+            Specification::factory()->create(array_merge([
+                'product_id' => $product->id,
+            ], $specAttributes));
+        });
     }
 
     /**
-     * Популярный товар (много продаж)
+     * Товар с несколькими спецификациями (вариантами)
+     */
+    public function withSpecifications(int $count = 3): static
+    {
+        return $this->afterCreating(function (Product $product) use ($count) {
+            Specification::factory()->count($count)->create(['product_id' => $product->id]);
+        });
+    }
+
+    /**
+     * Товар со скидкой (скидка применяется к спецификациям)
+     */
+    public function onSale(): static
+    {
+        return $this->afterCreating(function (Product $product) {
+            $product->specifications()->update([
+                'sale_price' => DB::raw('price * 0.8'),
+            ]);
+        });
+    }
+
+    /**
+     * Популярный товар
      */
     public function popular(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $attributes): array => [
             'sales_count' => fake()->numberBetween(15, 50),
             'views_count' => fake()->numberBetween(500, 2000),
         ]);
